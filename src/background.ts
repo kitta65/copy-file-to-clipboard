@@ -17,7 +17,7 @@ chrome.downloads.onChanged.addListener((delta) => {
       }
       if (
         item.totalBytes < 0 ||
-        10 * 1024 ** 2 < item.totalBytes // 10 MB
+        1 * 1024 ** 2 < item.totalBytes // 1MB
       ) {
         throw `${item.filename} is too large or unknown`;
       }
@@ -25,5 +25,5 @@ chrome.downloads.onChanged.addListener((delta) => {
     })
     .then((response) => response.text())
     .then((text) => console.log(text))
-    .catch((error) => console.log(error));
+    .catch((error) => console.log(error)); // TODO show message to user
 });
