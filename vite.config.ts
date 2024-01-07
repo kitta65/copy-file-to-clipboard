@@ -12,6 +12,7 @@ async function manifest() {
       default_popup: "index.html",
     },
     permissions: ["downloads"],
+    host_permissions: ["file:///*"],
   };
 }
 
