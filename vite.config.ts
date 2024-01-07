@@ -1,9 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { crx } from "@crxjs/vite-plugin";
+import { ManifestV3Export, crx } from "@crxjs/vite-plugin";
 import package_ from "./package.json";
 
-async function manifest() {
+const manifest: ManifestV3Export = () => {
   return {
     manifest_version: 3,
     name: "Copy File to Clipboard",
@@ -12,9 +12,12 @@ async function manifest() {
       default_popup: "index.html",
     },
     permissions: ["downloads"],
+    background: {
+      service_worker: "src/background.ts",
+    },
     host_permissions: ["file:///*"],
   };
-}
+};
 
 // https://vitejs.dev/config/
 export default defineConfig({
